@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         flag = GameObject.Find("flag");
         distance = GameObject.Find("Distance");
         Score = GameObject.Find("Score");
+        Debug.Log("Hello World");
     }
 
     void Update()
@@ -24,6 +25,12 @@ public class GameManager : MonoBehaviour
         // 將旗子與汽車的距離顯示在UI上面
         distance.GetComponent<Text>().text = "距離目標還有 " + length.ToString("F2") + "m";
         float ScoreNumber = 100 / length;//分數計算
-        Score.GetComponent<Text>().text = "分數 " + length.ToString("公尺") + "m";
+        if (length < 0)
+            ScoreNumber = 0;
+        if (ScoreNumber > 100)
+            ScoreNumber = 100;
+        Score.GetComponent<Text>().text = "分數 " + ScoreNumber.ToString("F2") + "分";
+        
     }
+    
 }
